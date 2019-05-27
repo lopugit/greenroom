@@ -1,12 +1,13 @@
 module.exports = {
   apps : [{
     name: 'muppets',
-    script: 'node/index.js',
+		script: 'node/index.js',
+		args: '--level dev',
     instances: 1,
-    autorestart: true,
-		watch: true,
+    autorestart: false,
+		watch: false,
 		ignore_watch: ['./node_modules/'],
-    max_memory_restart: '1G',
+    // max_memory_restart: '5G',
     env: {
       NODE_ENV: 'development'
     },

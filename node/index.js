@@ -1,3 +1,4 @@
+global.env = require('minimist')(process.argv.slice(2))
 global.logging = {
 	mongoose: {
 		values: false,
@@ -7,6 +8,29 @@ global.logging = {
 
 	}
 }
+
+global.secrets = require('secrets')
+
+let muppets = require('muppets')()
+
+let scripts = require('scripts')
+
+let minutes = 5 
+
+if(global.logging && global.logging.timing){
+	console.log(`running scripts now and then every ${minutes} minutes`)
+}
+console.log('test 1')
+let run = async ()=>{
+	
+	console.log('test 2')
+	await scripts({muppets}).catch(err=>console.error(err))
+	global.scriptsInterval = setInterval(async ()=>{
+		await scripts({muppets}).catch(err=>{console.error('something went wrong running the first scripts({muppets}), ', err)})
+	}, minutes * 1000 * 60)
+
+}
+run()
 console.log(`
   
 starting the show
@@ -110,21 +134,5 @@ w"    "w    =  =    ||||||||||||W            W|||||||||=========| /      \\
 	
 `)
 	}
-
-let muppets = require('muppets')()
-
-let scripts = require('scripts')
-
-let minutes = 5 
-
-if(global.logging && global.logging.timing){
-	console.log(`running scripts now and then every ${minutes} minutes`)
-}
-scripts({muppets})
-.then(()=>{
-	global.scriptsInterval = setInterval(function(){
-		scripts({muppets})
-	}, minutes * 1000 * 60)
-})
 
 module.exports = muppets
