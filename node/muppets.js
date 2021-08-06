@@ -1,7 +1,8 @@
 global.env = require('minimist')(process.argv.slice(2))
 global.Rollbar = require('rollbar')
+global.secrets = require('secrets')
 global.rollbar = new Rollbar({
-  accessToken: 'a8583839e0eb405fb3b598fa82daa55a',
+  accessToken: global.secrets.rollbar.key,
   captureUncaught: true,
   captureUnhandledRejections: true,
 	verbose: true,
@@ -18,7 +19,6 @@ global.logging = {
 	}
 }
 
-global.secrets = require('secrets')
 let muppets = require('muppets')()
 let scripts = require('scripts')
 let minutes = 5 

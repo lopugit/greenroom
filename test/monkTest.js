@@ -2,7 +2,8 @@ process.on('uncaughtException', function (err) {
   console.log('Caught exception: ', err);
 });
 let monk = require("monk")
-let db = monk("mongodb+srv://lopu:6AwswYsfVke8IwUz@thingtime.nobn0.mongodb.net/growtime")
+let secrets = require('../node/node_modules/secrets')
+let db = monk(secrets.test.monk)
 let model = db.get("testModel")
 
 ;(async () => {
