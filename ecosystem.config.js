@@ -1,18 +1,27 @@
 module.exports = {
   apps : [{
-    name: 'muppets',
-		script: 'node/index.js',
-		args: '--level dev',
-    instances: 1,
-    autorestart: false,
-		watch: false,
-		ignore_watch: ['./node_modules/'],
-    // max_memory_restart: '5G',
-    env: {
-      NODE_ENV: 'development'
-    },
-    env_production: {
-      NODE_ENV: 'production'
-    }
+    name: "dev-muppets",
+    script: 'node/index.js',
+    args: ["level", "dev"],
+    watch: ['node', "node/*/node_modules", "node/**/node_modules", "node/node_modules"],
+    ignore_watch: [],
+    node_args: "--trace-warnings"
+  },
+  {
+    name: "muppets",
+    script: 'node/index.js',
+    args: ["level", "prod"]
   }],
+  deploy : {
+    production : {
+      user : 'SSH_USERNAME',
+      host : 'SSH_HOSTMACHINE',
+      ref  : 'origin/master',
+      repo : 'GIT_REPOSITORY',
+      path : 'DESTINATION_PATH',
+      'pre-deploy-local': '',
+      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production',
+      'pre-setup': ''
+    }
+  }
 };
