@@ -19,6 +19,8 @@ global.logging = {
 	}
 }
 
+console.log(`Started Muppets, env: `, global.env)
+
 let muppets = require('muppets')()
 let scripts = require('scripts')
 let minutes = 5 
