@@ -6,7 +6,7 @@ global.rollbar = new Rollbar({
   captureUncaught: true,
   captureUnhandledRejections: true,
 	verbose: true,
-	// transmit: global.env.level == 'prod'
+	environment: global.env.level == 'prod' ? 'production' : 'development'
 })
 require('functions')["splash.js"]()
 global.logging = {
