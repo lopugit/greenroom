@@ -15,32 +15,30 @@ process.on("uncaughtException", function (err) {
   console.log("[muppets][error] Caught exception: ", err);
 });
 require('functions')["splash.js"]()
-global.logging = {
-	mongoose: {
-		values: false,
-		write: true
-	},
-	timing: {
-
-	}
-}
 
 console.log(`[muppets][info] Started Muppets, env: `, global.env)
 
 let muppets = require('muppets')()
 let scripts = require('scripts')
-let minutes = 5 
+let minutes = 1.2
 
-if(global.logging && global.logging.timing){
-	console.log(`[muppets][info] running scripts now, and then every ${minutes} minutes`)
-}
+console.log(`[muppets][info] running scripts now, and then every ${minutes} minutes`)
 let run = async ()=>{
+	let lastRun = new Date()
+	let nextRun = new Date(lastRun.getTime() + (minutes * 1000 * 60))
+
+	setInterval(()=>{
+		console.log("[muppets][info][scheduler] Running next script in", Math.floor((nextRun.getTime() - new Date().getTime()) / (1000 * 60)), "minutes", Math.floor((nextRun.getTime() - new Date().getTime()) / 1000 % 60), "seconds")
+	}, 10000)
 	
-	await scripts({muppets}).catch(err=>console.error(err))
 	global.scriptsInterval = setInterval(async ()=>{
+		lastRun = nextRun
+		nextRun = new Date(lastRun.getTime() + (minutes * 1000 * 60))
+		console.log("[muppets][info][scheduler] Running script again at", new Date())
 		await scripts({muppets}).catch(err=>{console.error('[muppets][error] something went wrong running the first scripts({muppets}), ', err)})
 	}, minutes * 1000 * 60)
-
+	
+	await scripts({muppets}).catch(err=>console.error(err))
 }
 
 run()
