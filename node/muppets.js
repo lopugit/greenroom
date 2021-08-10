@@ -11,7 +11,7 @@ global.rollbar = new global.Rollbar({
 	accessToken: global.secrets.rollbar.key,
 	captureUncaught: false,
 	captureUnhandledRejections: false,
-	verbose: true,
+	verbose: false,
 	environment: global.env.level == 'prod' ? 'production' : 'development'
 })
 // catches all uncaught errors so process never dies
@@ -20,7 +20,7 @@ process.on("uncaughtException", function (err) {
 });
 require('functions')["splash.js"]()
 
-global.logger.log(`[muppets][info] Started Muppets, env:`, "Test", global.env, process)
+global.logger.log(`[muppets][info] Started Muppets, env:`, global.env, process)
 
 let { DateTime } = require('luxon')
 let smarts = require('smarts')()
