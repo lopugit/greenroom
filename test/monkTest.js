@@ -1,5 +1,5 @@
 process.on('uncaughtException', function (err) {
-  console.log('Caught exception: ', err);
+  global.logger.log('Caught exception: ', err);
 });
 let monk = require("monk")
 let secrets = require('../node/node_modules/secrets')
@@ -9,17 +9,17 @@ let model = db.get("testModel")
 ;(async () => {
   await model.insert({ test: "foo" })
     .then(r => {
-      console.log(r)
+      global.logger.log(r)
     }).catch(e => {
-      console.log(e)
+      global.logger.log(e)
     })
   await model.findOneAndUpdate({ test: "foo" }, { $set: { test: "bar" } }, { upsert: true })
     .then(r => {
-      console.log(r)
+      global.logger.log(r)
     }).catch(e => {
-      console.log(e)
+      global.logger.log(e)
     })
 
-  console.log("Done")
+  global.logger.log("Done")
 })()
-console.log("running tests")
+global.logger.log("running tests")

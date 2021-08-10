@@ -26,6 +26,7 @@
   "dependencies": {
     "axios": "0.21.1",
     "flatted": "2.0.0",
+    "luxon": "2.0.2",
     "minimist": "1.2.5",
     "mongoose": "5.13.2",
     "monk": "7.3.4",
@@ -36,6 +37,7 @@
     "uuid": "3.3.2"
   },
   "devDependencies": {
-    "smarts": "1.0.127"
+    "eslint": "7.32.0",
+    "smarts": "1.0.237"
   }
 }

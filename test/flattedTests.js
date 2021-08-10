@@ -29,7 +29,7 @@ let f = require('flatted')
 let test = {
 	one: 'string1',
 	two: function(){},
-	three(){ console.log('hmm') },
+	three(){ global.logger.log('hmm') },
 	four: ()=>{},
 	five: async ()=>{}
 }
@@ -38,8 +38,8 @@ test.test = test
 
 let string = f.stringify(test, stringifyFunc)
 
-console.log('string')
-console.log(string)
+global.logger.log('string')
+global.logger.log(string)
 let parsed = JSON.parse(string, parseFunc)
-console.log('parsed')
-console.log(parsed)
+global.logger.log('parsed')
+global.logger.log(parsed)

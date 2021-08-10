@@ -19,5 +19,5 @@ require('puppeteer').launch()
 		return document.querySelector('#products-list').children
 	})
 })
-.then(console.log) // nothing
-.catch(console.error)
+.then(global.logger.log) // nothing
+.catch(global.logger.error)
