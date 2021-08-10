@@ -3,7 +3,10 @@ module.exports = {
 		{
 			name: "dev-muppets",
 			script: 'node/index.js',
-			args: "--level dev",
+			args: [
+				"--level",
+				"dev"
+			],
 			watch: ['node', "node/*/node_modules", "node/**/node_modules", "node/node_modules"],
 			ignore_watch: [],
 			node_args: "--trace-warnings"
@@ -11,7 +14,10 @@ module.exports = {
 		{
 			name: "prod-muppets",
 			script: 'node/index.js',
-			args: "--level prod"
+			args: [
+				"--level",
+				"prod"
+			]
 		}
 	],
   deploy : {

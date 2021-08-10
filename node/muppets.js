@@ -4,7 +4,7 @@ global.secrets = require('secrets')
 global.logger = require('logger')
 /** Logging */
 setInterval(() => {
-	global.logger.log("[muppets][info] Still alive, arguments were", global.env)
+	global.logger.log("[muppets][alive][info] Still alive, arguments were", global.env)
 }, 5000);
 // rollbar config
 global.rollbar = new global.Rollbar({
