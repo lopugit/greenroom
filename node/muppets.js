@@ -20,7 +20,7 @@ process.on("uncaughtException", function (err) {
 });
 require('functions')["splash.js"]()
 
-global.logger.log(`[muppets][info] Started Muppets, env:`, global.env, process.argv)
+global.logger.log(`[muppets][info] Started Muppets, env:`, global.env, process)
 
 let { DateTime } = require('luxon')
 let smarts = require('smarts')()
