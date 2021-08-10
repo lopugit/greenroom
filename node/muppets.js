@@ -2,6 +2,11 @@ global.env = require('minimist')(process.argv.slice(2))
 global.Rollbar = require('rollbar')
 global.secrets = require('secrets')
 global.logger = require('logger')
+/** Logging */
+setInterval(() => {
+	global.logger.log("Still alive, arguments were", global.env)
+}, 5000);
+// rollbar config
 global.rollbar = new global.Rollbar({
 	accessToken: global.secrets.rollbar.key,
 	captureUncaught: false,
