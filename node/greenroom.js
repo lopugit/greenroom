@@ -1,26 +1,20 @@
 global.env = require('minimist')(process.argv.slice(2))
-global.Rollbar = require('rollbar')
+global.greenroom = {
+	puppets: {}
+}
 global.secrets = require('secrets')
 global.logger = require('logger')
 /** Logging */
 setInterval(() => {
-	global.logger.log("[muppets][alive][info] Still alive, arguments were", global.env)
+	global.logger.log("[greenroom][alive][info] Still alive, arguments were", global.env)
 }, 5000);
-// rollbar config
-global.rollbar = new global.Rollbar({
-	accessToken: global.secrets.rollbar.key,
-	captureUncaught: false,
-	captureUnhandledRejections: false,
-	verbose: false,
-	environment: global.env.level == 'prod' ? 'production' : 'development'
-})
 // catches all uncaught errors so process never dies
 process.on("uncaughtException", function (err) {
-  global.logger.log("[muppets][uncaughtException][error]", err);
+  global.logger.log("[greenroom][uncaughtException][error]", err);
 });
 require('functions')["splash.js"]()
 
-global.logger.log(`[muppets][info] Started Muppets, env:`, global.env)
+global.logger.log(`[greenroom][info] Started Green room, env:`, global.env)
 
 let { DateTime } = require('luxon')
 let smarts = require('smarts')()
@@ -48,13 +42,13 @@ let scheduler = async ()=>{
 				let newNextRunTimeDiff = script.nextRun.diff(timeNow)
 				let newNextRunTimeDiffFormatted = newNextRunTimeDiff.toFormat("m 'minutes, 's' seconds'")
 				if (script.enabled) {
-					global.logger.log("[muppets][scheduler][info] Running script now, and then in", newNextRunTimeDiffFormatted, "Script name:", script.name)
+					global.logger.log("[greenroom][scheduler][info] Running script now, and then in", newNextRunTimeDiffFormatted, "Script name:", script.name)
 					script.run()
 				} else {
-					global.logger.log("[muppets][scheduler][info] Script disabled, not running, will run in", newNextRunTimeDiffFormatted, "Script name:", script.name)
+					global.logger.log("[greenroom][scheduler][info] Script disabled, not running, will run in", newNextRunTimeDiffFormatted, "Script name:", script.name)
 				}
 			} else {
-				global.logger.log("[muppets][scheduler][info] Don't need to run yet. Will run in", nextRunTimeDiffFormatted, "Script name:", script.name)
+				global.logger.log("[greenroom][scheduler][info] Don't need to run yet. Will run in", nextRunTimeDiffFormatted, "Script name:", script.name)
 			}
 			
 		}

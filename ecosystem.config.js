@@ -1,7 +1,7 @@
 module.exports = {
   apps : [
 		{
-			name: "dev-muppets",
+			name: "dev-greenroom",
 			script: 'node/index.js',
 			args: [
 				"--level",
@@ -12,7 +12,7 @@ module.exports = {
 			node_args: "--trace-warnings"
 		},
 		{
-			name: "prod-muppets",
+			name: "prod-greenroom",
 			script: 'node/index.js',
 			args: [
 				"--level",
