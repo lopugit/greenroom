@@ -1,6 +1,6 @@
 global.env = require('minimist')(process.argv.slice(2))
 global.greenroom = {
-	puppets: {}
+	actors: {}
 }
 global.secrets = require('secrets')
 global.logger = require('logger')
