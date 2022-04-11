@@ -1,4 +1,3 @@
-global.env = require('minimist')(process.argv.slice(2))
 global.greenroom = {
 	actors: {}
 }
@@ -6,7 +5,7 @@ global.secrets = require('secrets')
 global.logger = require('logger')
 /** Logging */
 setInterval(() => {
-	global.logger.log("[greenroom][alive][info] Still alive, arguments were", global.env)
+	global.logger.log("[greenroom][alive][info] Still alive")
 }, 5000);
 // catches all uncaught errors so process never dies
 process.on("uncaughtException", function (err) {
@@ -14,7 +13,7 @@ process.on("uncaughtException", function (err) {
 });
 require('functions')["splash.js"]()
 
-global.logger.log(`[greenroom][info] Started Green room, env:`, global.env)
+global.logger.log(`[greenroom][info] Started Green room`)
 
 let { DateTime } = require('luxon')
 let smarts = require('smarts')()

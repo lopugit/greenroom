@@ -5,8 +5,9 @@
   "main": "node/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start.dev": "pm2 start ecosystem.config.js --only greenroom-api ; npm run log.dev",
-    "start.prod": "pm2 start ecosystem.config.js --only prod-greenroom ; npm run log.prod",
+    "dev.dev": "npm run start.dev",
+    "start.dev": "pm2 start ecosystem.config.js --only greenroom-api",
+    "start.prod": "pm2 start ecosystem.config.js --only prod-greenroom",
     "restart.dev": "npm run delete.dev ; npm run start.dev",
     "restart.prod": "npm run delete.prod ; npm run start.prod",
     "log.dev": "pm2 log greenroom-api",
@@ -25,6 +26,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "0.21.1",
+    "dotenv": "16.0.0",
     "flatted": "2.0.0",
     "luxon": "2.0.2",
     "minimist": "1.2.5",
