@@ -1,7 +1,7 @@
 module.exports = {
   apps : [
 		{
-			name: "dev-greenroom",
+			name: "greenroom-api",
 			script: 'node/index.js',
 			args: [
 				"--level",
