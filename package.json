@@ -28,7 +28,7 @@
     "axios": "0.21.1",
     "dotenv": "16.0.0",
     "flatted": "2.0.0",
-    "luxon": "2.0.2",
+    "luxon": "2.5.2",
     "minimist": "1.2.5",
     "mongoose": "5.13.2",
     "monk": "7.3.4",
