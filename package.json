@@ -30,7 +30,7 @@
     "flatted": "2.0.0",
     "luxon": "2.0.2",
     "minimist": "1.2.5",
-    "mongoose": "5.13.2",
+    "mongoose": "5.13.15",
     "monk": "7.3.4",
     "monk-middleware-wrap-non-dollar-update": "0.2.1",
     "puppeteer": "1.13.0",
